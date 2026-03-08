@@ -6,7 +6,6 @@
     <title>Little League Rules Assistant</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
-
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: #f0f4f8;
@@ -16,14 +15,12 @@
             align-items: center;
             padding: 20px;
         }
-
         header {
             text-align: center;
             padding: 24px 0 16px;
             width: 100%;
             max-width: 720px;
         }
-
         header h1 {
             font-size: 1.8rem;
             color: #1a365d;
@@ -32,13 +29,7 @@
             justify-content: center;
             gap: 10px;
         }
-
-        header p {
-            color: #4a5568;
-            margin-top: 6px;
-            font-size: 0.95rem;
-        }
-
+        header p { color: #4a5568; margin-top: 6px; font-size: 0.95rem; }
         .chat-container {
             width: 100%;
             max-width: 720px;
@@ -50,7 +41,6 @@
             height: 72vh;
             min-height: 400px;
         }
-
         #messages {
             flex: 1;
             overflow-y: auto;
@@ -59,21 +49,17 @@
             flex-direction: column;
             gap: 16px;
         }
-
         .message {
             display: flex;
             gap: 10px;
             align-items: flex-start;
             animation: fadeIn 0.2s ease;
         }
-
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(6px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
         .message.user { flex-direction: row-reverse; }
-
         .avatar {
             width: 34px;
             height: 34px;
@@ -84,10 +70,8 @@
             font-size: 1rem;
             flex-shrink: 0;
         }
-
         .message.user .avatar { background: #2b6cb0; color: white; }
-        .message.bot .avatar  { background: #e53e3e; color: white; }
-
+        .message.bot .avatar { background: #e53e3e; color: white; }
         .bubble {
             max-width: 80%;
             padding: 12px 16px;
@@ -95,48 +79,42 @@
             line-height: 1.55;
             font-size: 0.95rem;
         }
-
         .message.user .bubble {
             background: #2b6cb0;
             color: white;
             border-top-right-radius: 4px;
         }
-
         .message.bot .bubble {
             background: #f7fafc;
             color: #2d3748;
             border: 1px solid #e2e8f0;
             border-top-left-radius: 4px;
         }
-
         .bubble.loading {
             display: flex;
             gap: 4px;
             align-items: center;
             padding: 14px 18px;
         }
-
         .dot {
-            width: 8px; height: 8px;
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
             background: #a0aec0;
             animation: bounce 1.2s infinite;
         }
         .dot:nth-child(2) { animation-delay: 0.2s; }
         .dot:nth-child(3) { animation-delay: 0.4s; }
-
         @keyframes bounce {
             0%, 60%, 100% { transform: translateY(0); }
             30% { transform: translateY(-6px); }
         }
-
         .suggestions {
             padding: 0 20px 16px;
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
         }
-
         .suggestion-btn {
             background: #ebf8ff;
             color: #2b6cb0;
@@ -147,9 +125,7 @@
             cursor: pointer;
             transition: all 0.2s;
         }
-
         .suggestion-btn:hover { background: #bee3f8; }
-
         .input-area {
             padding: 16px;
             border-top: 1px solid #e2e8f0;
@@ -157,7 +133,6 @@
             gap: 10px;
             align-items: flex-end;
         }
-
         #user-input {
             flex: 1;
             border: 1.5px solid #e2e8f0;
@@ -171,9 +146,7 @@
             transition: border-color 0.2s;
             line-height: 1.4;
         }
-
         #user-input:focus { border-color: #2b6cb0; }
-
         #send-btn {
             background: #2b6cb0;
             color: white;
@@ -186,79 +159,59 @@
             transition: background 0.2s;
             white-space: nowrap;
         }
-
-        #send-btn:hover  { background: #2c5282; }
+        #send-btn:hover { background: #2c5282; }
         #send-btn:disabled { background: #a0aec0; cursor: not-allowed; }
-
-        footer {
-            margin-top: 14px;
-            font-size: 0.8rem;
-            color: #a0aec0;
-        }
+        footer { margin-top: 14px; font-size: 0.8rem; color: #a0aec0; }
     </style>
 </head>
 <body>
-
 <header>
-    <h1>â¾ Little League Rules Assistant</h1>
-    <p>Ask any question about the rules â get a quick, clear answer.</p>
+    <h1>&#9918; Little League Rules Assistant</h1>
+    <p>Ask any question about the rules &mdash; get a quick, clear answer.</p>
 </header>
-
 <div class="chat-container">
     <div id="messages">
         <div class="message bot">
-            <div class="avatar">â¾</div>
+            <div class="avatar">&#9918;</div>
             <div class="bubble">
-                Hi! I'm your Little League rules assistant. Ask me about any rule situation â stolen bases, dropped third strikes, the infield fly rule, batting order mistakes, and more!
+                Hi! I'm your Little League rules assistant. Ask me about any rule situation &mdash; stolen bases, dropped third strikes, the infield fly rule, batting order mistakes, and more!
             </div>
         </div>
     </div>
-
     {% if rules_loaded %}
     <div class="suggestions">
         <button class="suggestion-btn" onclick="sendSuggestion(this)">Can a runner steal on a walk?</button>
         <button class="suggestion-btn" onclick="sendSuggestion(this)">What is the infield fly rule?</button>
-        <button class="suggestion-btn" onclick="sendSuggestion(this)">Dropped third strike â is the batter out?</button>
+        <button class="suggestion-btn" onclick="sendSuggestion(this)">Dropped third strike &mdash; is the batter out?</button>
     </div>
     {% endif %}
-
     <div class="input-area">
-        <textarea
-            id="user-input"
-            placeholder="Ask a rules question..."
-            rows="1"
-            onkeydown="handleKey(event)"
-            oninput="autoResize(this)"
-        ></textarea>
+        <textarea id="user-input" placeholder="Ask a rules question..." rows="1"
+            onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
         <button id="send-btn" onclick="sendMessage()">Send</button>
     </div>
 </div>
-
 <footer>Answers are based on your league rulebook. Always defer to your umpire on the field.</footer>
-
 <script>
     function autoResize(el) {
         el.style.height = 'auto';
         el.style.height = Math.min(el.scrollHeight, 120) + 'px';
     }
-
     function handleKey(e) {
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
             sendMessage();
         }
     }
-
     function sendSuggestion(btn) {
         document.getElementById('user-input').value = btn.textContent;
         sendMessage();
     }
-
     function addMessage(text, role) {
         const messages = document.getElementById('messages');
         const div = document.createElement('div');
         div.className = `message ${role}`;
-        const avatar = role === 'user' ? 'ð¤' : 'â¾';
+        const avatar = role === 'user' ? '&#128100;' : '&#9918;';
         div.innerHTML = `
             <div class="avatar">${avatar}</div>
             <div class="bubble">${text.replace(/\n/g, '<br>')}</div>
@@ -266,14 +219,13 @@
         messages.appendChild(div);
         messages.scrollTop = messages.scrollHeight;
     }
-
     function addLoading() {
         const messages = document.getElementById('messages');
         const div = document.createElement('div');
         div.className = 'message bot';
         div.id = 'loading-msg';
         div.innerHTML = `
-            <div class="avatar">â¾</div>
+            <div class="avatar">&#9918;</div>
             <div class="bubble loading">
                 <div class="dot"></div><div class="dot"></div><div class="dot"></div>
             </div>
@@ -281,25 +233,20 @@
         messages.appendChild(div);
         messages.scrollTop = messages.scrollHeight;
     }
-
     function removeLoading() {
         const el = document.getElementById('loading-msg');
         if (el) el.remove();
     }
-
     async function sendMessage() {
         const input = document.getElementById('user-input');
         const text = input.value.trim();
         if (!text) return;
-
         const btn = document.getElementById('send-btn');
         btn.disabled = true;
         input.value = '';
         input.style.height = 'auto';
-
         addMessage(text, 'user');
         addLoading();
-
         try {
             const res = await fetch('/chat', {
                 method: 'POST',
@@ -313,11 +260,9 @@
             removeLoading();
             addMessage('Network error. Please try again.', 'bot');
         }
-
         btn.disabled = false;
         input.focus();
     }
 </script>
-
 </body>
 </html>
